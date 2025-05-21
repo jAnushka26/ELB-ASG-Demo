@@ -182,8 +182,23 @@ sudo systemctl start jenkins
 curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
 sudo yum install -y nodejs
  
-sudo git clone https://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@github.com/jAnushka26/jenkins-pipeline-2.0.git
+# Install Docker
+sudo yum install -y docker
+sudo systemctl start docker
+sudo systemctl enable docker
  
+# Add ec2-user to docker group
+sudo usermod -aG docker ec2-user
+ 
+# Clone the GitHub repo
+cd /home/ec2-user
+git clone https://github.com/jAnushka26/jenkins-pipeline-2.0.git myapp
+cd myapp
+ 
+ 
+ 
+sudo docker build -t myapp .
+sudo docker run -d -p 80:3000 --name myapp myapp 
 EOF
   )
 
