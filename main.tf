@@ -192,7 +192,7 @@ sudo usermod -aG docker ec2-user
  
 # Clone the GitHub repo
 cd /home/ec2-user
-git clone https://github.com/jAnushka26/jenkins-pipeline-2.0.git myapp
+git clonehttps://github.com/jAnushka26/ELB-ASG-Demo.git myapp
 cd myapp
  
  
