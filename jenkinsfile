@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/jAnushka26/jenkins-pipeline-2.0.git'
+                git branch: 'main', url: 'https://github.com/jAnushka26/ELB-ASG-Demo.git'
             }
         }
         stage('Terraform Init') {
