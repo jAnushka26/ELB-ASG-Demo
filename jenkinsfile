@@ -1,0 +1,40 @@
+pipeline {
+    agent any 
+
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')     // Configure in Jenkins credentials
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION = 'us-east-1'
+    }
+ 
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/jAnushka26/jenkins-pipeline-2.0.git'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform fmt'
+                sh 'terraform init'
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
+    }
+ 
+    post {
+        always {
+            echo 'Pipeline execution completed.'
+        }
+    }
+}
+ 
